@@ -1,0 +1,71 @@
+API testing
+Application programming interface. API is interface b/w S/W applications.
+Types of API testing : SOAP,JSON RPC,XML RPC,REST. Only WEB API.
+API testing is testing that API and its integration wit the services.
+If certain API Testing is missed it be huge problem in production after full integration and it will be hard to debug in production environment.
+Why API testing : Buggy API : eg: 21 keys expected in FE but only 20 came : so count of keys will break.
+What to test:  Validate the keys with the Min. and Max range of APIs , test case to do XML , JSON Schema validation, keys verification
+				For JSON, XML API's we should verify it's that all the keys are coming.
+				Verify that how the API's error codes are handled. test for boundary values, Performance test, Regression test integration testing.
+What is SOAP:  Simple Object Access Protocol : Messaging protocol that allows programms that run on diff OS or services likr FE or BE to communicate 
+using HTTP and XML/JSON.
+REST : REpresntational State Transfer : An API is REST if these 6 constraints:  UI,S,Cache,CLS,La ,COD.
+Uniform Interface,Stateless,Cacheable,Client-Server,Layered System Code on Demand.
+SOAP : XML based  : WSDL for communication : Invokes services by calling RPC method :Not human readable :HTTP,SMTP,FTP:difficult JS:not good performance
+REST : Architecture based : XML/JSON to send recieve data:  Simply call services via URL : XML/JSON readable : only HTTP :easy JS: great performance.
+API : Twitter,SLack,LinkedIN,
+	6 Constraints:
+	Uniform interface : same resource like XML/JSON.
+	Stateless: server don't store anything about users /requests.
+	Cacheable : Data is cacheable.
+	Client-Server : Behave independently.
+	Layered System : Any no of layers: like Security.
+	Code on Demand : Server can store code/logic transfer when needed not client-side logic.
+	
+POSTMAN: Integrated devlopment enviornment: use to TEST API.
+		All is request.
+		Collection: Request: EG Collection of login request.
+		Login Collection: Flow of requests: After login multiple requests:
+		
+		PreScripts : JavaScript:
+		
+		Collection : TestCases for Login:
+		
+		Types of request:
+			
+			Variables:save:
+			
+			GET: https:..reqres.in/api/users?page=2
+		
+		https: REST API 
+		http methods:
+		GET:Read
+		PUT:Update
+		POST:Insert/Create.
+		DELETE:DELETE
+		
+		safe:GET
+		unsafe:Delete,Put,post.: Idempotent :Delete,Put
+		Post is unsafe if we do it multiple post.
+		
+		CRUD
+		Create --> POST
+		Read   --> GET
+		Update --> Put
+		Delete --> Delete
+		
+	soap to	rest API:Jersey/Spring rest
+weather app:  req<-->resp :Server(Weather data)		
+			  JSON/XML
+	
+	http:xvz/add?n1=2&n2=3
+	
+	Collections: group of all related requests.
+	
+	
+	
+	 
+
+
+				:
+			

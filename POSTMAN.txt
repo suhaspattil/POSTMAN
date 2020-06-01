@@ -1,0 +1,239 @@
+POSTMAN
+https://httpbin.org/
+httpbin.org/get
+request
+httpbin.org/get?name=John&age=30
+
+response JSON parsing
+{
+  "args": {
+    "age": "30",
+    "name": "John"
+  },
+  "headers": {
+    "Accept": "*/*",... as expected test case pass.
+	
+
+
+PARAMS tab parameters
+Header
+Postman console.
+httpbin.org/status/:status?name=john
+httpbin.org/status/:status?name=john
+
+Query parameters:name
+Path variables:status
+Authorization:401:Bearer TOken:foo
+Save and share
+request name:Collections:
+Share as a link:Import as a file
+History:Save_Collection:collection
+Export the file:Postman rest api:
+
+POST request:
+httpbin.org/post
+raw
+{
+	 "orderId":"1234",
+	 "quantity":20,
+	 "productId":3000
+}
+
+Array of objects:
+
+{
+	 "orderId":"1234",
+	"products": [
+		{
+			"quantity":20,
+			"productId":3000
+		},
+		{
+			"quantity":10,
+			"productId":2000
+		}
+	]
+} 
+
+
+
+
+assignment:
+Name: customerId
+Value:100
+
+{
+	 "orderId":"1234",
+	"products": [
+		{
+			"quantity":20,
+			"productId":3000
+		},
+		{
+			"quantity":10,
+			"productId":2000
+		}
+	],
+	"customers":[
+	{
+		"customerId":101C
+		"Value":101
+	},
+	{
+		"customerId":102C
+		"Value":102
+	}	
+	]
+}
+
+Send one request to another:
+httpbin.org/uuid
+{
+  "uuid": "4c50dc39-fdba-45de-98d9-609fa036c8d8"
+}
+Send one request output to other request.
+Post request add this uuid
+Using Variables
+
+{
+	 "orderId":"4c50dc39-fdba-45de-98d9-609fa036c8d8",
+	"products": [
+		{
+			"quantity":20,
+			"productId":3000
+		},
+		{
+			"quantity":10,
+			"productId":2000
+		}
+	]
+} 
+
+console.log(pm.response.json());
+
+const response = pm.response.json();
+console.log(response.uuid);
+pm.globals.set("orderId",response.uuid);
+
+{
+	 "orderId":"{{orderId}}",
+	"products": [
+		{
+			"quantity":20,
+			"productId":3000
+		},
+		{
+			"quantity":10,
+			"productId":2000
+		}
+	]
+} 
+LOGIN
+httpbin.org/bearer
+
+const response = pm.response.json();
+pm.globals.set("token",response.token);
+
+const response = pm.response.json();
+pm.globals.set("OrderId",response.uuid);
+
+{
+	 "orderId":"1234",
+	"customerId":123,
+	"products": [
+		{
+			"quantity":20,
+			"productId":3000
+		},
+		{
+			"quantity":10,
+			"productId":2000
+		}
+	]
+} 
+
+Pre-requested script
+const customerId = Math.floor((Math.random()*100)+1);
+console.log(customerId);
+--set global
+const customerId = Math.floor((Math.random()*100)+1);
+pm.globals.set("customerId",customerId);
+
+POST
+Body
+{
+	 "orderId":"{{orderId}}",
+	"customerId":{{customerId}},
+	"products": [
+		{
+			"quantity":20,
+			"productId":3000
+		},
+		{
+			"quantity":10,
+			"productId":2000
+		}
+	]
+} 
+POST
+httpbin.org/post
+{
+	 "orderId":"{{orderId}}",
+	"customerId":{{customerId}},
+	"products": [
+		{
+			"quantity":{{$randomInt}},
+			"productId":3000
+		},
+		{
+			"quantity":{{$randomInt}},
+			"productId":2000
+		}
+	]
+} 
+
+
+Writing Tests for above everything works good.
+1.test templates status code is 200.
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+2.Snippet: Json value check:
+pm.test("Your test name", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.json.customerId).to.eql(24);
+});
+3.Snippet:set a global variable
+pm.test("Check customerId", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.json.customerId).to.eql(pm.globals.get("customerId"));
+});
+//Always make sure your tests fail.
+pm.test("Check customerId", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.json.customerId).to.eql(pm.globals.get("customerId"));
+});
+
+//Test productId
+//Use console log
+pm.test("Check productId", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData.json.products[0].productId).to.eql(pm.globals.get(3000));
+});
+
+//Refactoring tests
+console.log(jsonData.json.cusomterId);
+//error as variable not accessed outside the function.
+var jsonData = pm.response.json();
+console.log(jsonData.json.cusomterId);
+
+or 
+const response = pm.response.json();
+console.log(response.json.cusomterId);
+//postman complete guide.
+
+//Automation the complete collectiion run.
+1.Login
+2.Get orderid
+3.Send order.
+

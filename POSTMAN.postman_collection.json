@@ -1,0 +1,337 @@
+{
+	"info": {
+		"_postman_id": "ac19845e-44c1-424d-999a-46c09efc2caf",
+		"name": "POSTMAN",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "httpbin.org/status/:status?name=john",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "httpbin.org/status/:status?name=john",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"status",
+						":status"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "john"
+						}
+					],
+					"variable": [
+						{
+							"key": "status",
+							"value": "404"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "httpbin.org/get?name=John&age=30&email=john@example.commerce",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Xkey",
+						"value": "foo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "httpbin.org/get?name=John&age=30&email=john@example.commerce",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "John"
+						},
+						{
+							"key": "age",
+							"value": "30"
+						},
+						{
+							"key": "email",
+							"value": "john@example.commerce"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n\t \"orderId\":\"1234\",\r\n\t\"products\": [\r\n\t\t{\r\n\t\t\t\"quantity\":20,\r\n\t\t\t\"productId\":3000\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"quantity\":10,\r\n\t\t\t\"productId\":2000\r\n\t\t}\r\n\t],\r\n\t\"customers\":[\r\n\t{\r\n\t\t\"customerId\":101,\r\n\t\t\"Value\":5001\r\n\t},\r\n\t{\r\n\t\t\"customerId\":102,\r\n\t\t\"Value\":5002\r\n\t}\t\r\n\t]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "httpbin.org/post",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "httpbin.org/uuid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "df98c6ef-b13d-4aed-bb2c-5e5caeb1c37c",
+						"exec": [
+							"const response = pm.response.json();\r",
+							"pm.globals.set(\"orderId\",response.uuid);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "httpbin.org/uuid",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"uuid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Global Variable",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "df98c6ef-b13d-4aed-bb2c-5e5caeb1c37c",
+						"exec": [
+							"const response = pm.response.json();\r",
+							"pm.globals.set(\"orderId\",response.uuid);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t \"orderId\":\"{{orderId}}\",\r\n\t\"products\": [\r\n\t\t{\r\n\t\t\t\"quantity\":20,\r\n\t\t\t\"productId\":3000\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"quantity\":10,\r\n\t\t\t\"productId\":2000\r\n\t\t}\r\n\t]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "httpbin.org/uuid",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"uuid"
+					]
+				},
+				"description": "httpbin.org/uuid"
+			},
+			"response": []
+		},
+		{
+			"name": "POST_array",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n\t \"orderId\":\"{{orderId}}}\",\r\n\t\"products\": [\r\n\t\t{\r\n\t\t\t\"quantity\":20,\r\n\t\t\t\"productId\":3000\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"quantity\":10,\r\n\t\t\t\"productId\":2000\r\n\t\t}\r\n\t],\r\n\t\"customers\":[\r\n\t{\r\n\t\t\"customerId\":101,\r\n\t\t\"Value\":5001\r\n\t},\r\n\t{\r\n\t\t\"customerId\":102,\r\n\t\t\"Value\":5002\r\n\t}\t\r\n\t]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "httpbin.org/post",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST_array Send reponse to other resuest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n\t \"orderId\":\"{{orderId}}}\",\r\n\t\"products\": [\r\n\t\t{\r\n\t\t\t\"quantity\":20,\r\n\t\t\t\"productId\":3000\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"quantity\":10,\r\n\t\t\t\"productId\":2000\r\n\t\t}\r\n\t],\r\n\t\"customers\":[\r\n\t{\r\n\t\t\"customerId\":101,\r\n\t\t\"Value\":5001\r\n\t},\r\n\t{\r\n\t\t\"customerId\":102,\r\n\t\t\"Value\":5002\r\n\t}\t\r\n\t]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "httpbin.org/post",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"post"
+					]
+				},
+				"description": "Send reponse UUId using global variable\r\nconst response = pm.response.json();\r\nconsole.log(response.uuid);\r\npm."
+			},
+			"response": []
+		},
+		{
+			"name": "get_with_parameters",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Xkey",
+						"value": "foo",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "httpbin.org/get?name=John&age=30&email=john@example.commerce",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "John"
+						},
+						{
+							"key": "age",
+							"value": "30"
+						},
+						{
+							"key": "email",
+							"value": "john@example.commerce"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST_test_customerId",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e11cba3e-cb5b-4dd2-999e-74d70482ca58",
+						"exec": [
+							"const customerId = Math.floor((Math.random()*100)+1);\r",
+							"pm.globals.set(\"customerId\",customerId);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "3bf6e3db-2fbe-49a5-a62d-1caaa12c09d2",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Check customerId\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.json.customerId).to.eql(pm.globals.get(\"customerId\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check productId\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.json.products[0].productId).to.eql(3000);\r",
+							"    pm.expect(jsonData.json.products[1].productId).to.eql(2000);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t \"orderId\":\"{{orderId}}\",\r\n\t\"customerId\":{{customerId}},\r\n\t\"products\": [\r\n\t\t{\r\n\t\t\t\"quantity\":{{$randomInt}},\r\n\t\t\t\"productId\":3000\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"quantity\":{{$randomInt}},\r\n\t\t\t\"productId\":2000\r\n\t\t}\r\n\t]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "httpbin.org/post",
+					"host": [
+						"httpbin",
+						"org"
+					],
+					"path": [
+						"post"
+					]
+				},
+				"description": "Pre-requested script\r\nconst customerId = Math.floor((Math.random()*100)+1);\r\nconsole.log(customerId);"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
